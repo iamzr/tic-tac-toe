@@ -1,58 +1,54 @@
 const gameBoard = (function () {
     console.log("gameBoard on")
-    board = new Array(9);
+    let board = new Array(9);
 
     const Player = (name, symbol) => {
         let positions = []
         return {name, symbol, positions}
     };
 
-    player1 = Player("p1", "x");
-    player2 = Player("p2", "o");
-    
-    whosTurn = false; // False = player 1, true = player 2
-    function turn (position){
-        if (!whosTurn) {
-            player1.positions = position;
-        } else {
-            player2.positions = position;
-        }
-        whosTurn = !whosTurn;
-        updateWhosTurn(whosTurn);
-    }
+    winningCombos = [
+            [1,2,3],
+            [4,5,6],
+            [7,8,9],
+            [1,4,7],
+            [2,5,8],
+            [3,6,9],
+            [1,5,9],
+            [3,5,7]];
 
-    return {board, whosTurn}
-}) ()
+    let player1 = Player("p1", "x");
+    let player2 = Player("p2", "o");
 
-const displayController = (() => {
-    console.log("display controller on")
-
-    console.log("running")
-    const squares = document.querySelectorAll(".square")
+    let squares = document.querySelectorAll(".square");
     squares.forEach(square => {
         square.addEventListener("click", () => {
-            console.log(square.id)
+            turn(square.id)
         })
     })
 
-    function playerTurn(square) {
-        console.log(square.id);
+    let whosTurn = false; // false = player1's turn , true = player2's turn
+    function turn(selectedPosition) {
+        if (checkValid(selectedPosition)) {
+            console.log("valid position")
+            
+            if (!whosTurn) {
+                player1.positions.push(selectedPosition)
+                displayController.updateBoard(player1, position)
+            } else {
+                player2.positions.push(selectedPosition)
+                displayController.updateBoard(player2, position)
+            }
+            anyWins();
+            whosTurn = !whosTurn;
+        }
+        else {
+            displayController.invalidSelection()
+        }
     }
 
-   function updateWhosTurn (bool) {
-       let turn = "";
+}) ()
 
-       if (!bool) {
-           turn = "Player 1"
-       } else {
-           turn = "Player 2"
-       }
+const displayController = (() => {
 
-       whosTurnDiv = document.getElementById("whos-turn");
-       whosTurnDiv.textContent = turn;
-    
-   }
-
-   return {playerTurn, updateWhosTurn}
- 
 }) ()
