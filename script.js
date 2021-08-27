@@ -3,7 +3,7 @@ const gameBoard = (function () {
     let board = new Array(9);
 
     const Player = (name, symbol) => {
-        let positions = []
+        let positions = [5];
         return {name, symbol, positions}
     };
 
@@ -23,7 +23,8 @@ const gameBoard = (function () {
     let squares = document.querySelectorAll(".square");
     squares.forEach(square => {
         square.addEventListener("click", () => {
-            turn(square.id)
+            console.log(square.id, typeof(player1.positions))
+            turn(square.id);
         })
     })
 
@@ -34,21 +35,42 @@ const gameBoard = (function () {
             
             if (!whosTurn) {
                 player1.positions.push(selectedPosition)
-                displayController.updateBoard(player1, position)
+                displayController.updateBoard(player1, selectedPosition)
             } else {
                 player2.positions.push(selectedPosition)
-                displayController.updateBoard(player2, position)
+                displayController.updateBoard(player2, selectedPosition)
             }
-            anyWins();
             whosTurn = !whosTurn;
         }
-        else {
-            displayController.invalidSelection()
+    }
+
+    function checkValid(position) {
+        if (player1.positions.includes(position) || player2.positions.includes(position)) {
+            return false;
+        } else {
+            return true;
         }
     }
+
+    return{player1, player2}
 
 }) ()
 
 const displayController = (() => {
+    function updateBoard(player, position) {
+        placeSymbol(player, position);
+        changePlayer(player)
+    }
 
+    function changePlayer(player) {
+        whosTurnDiv = document.getElementById("whos-turn");
+        whosTurnDiv.textContent = player.name;
+    }
+
+    function placeSymbol (player, position) {
+        square = document.getElementById(position);
+        square.textContent = player.symbol;
+    }
+
+    return {updateBoard}
 }) ()
