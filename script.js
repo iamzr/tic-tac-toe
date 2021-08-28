@@ -91,14 +91,33 @@ const displayController = (() => {
         document.getElementById("game-over").classList = ""
     }
 
+
     function restart() {
         gameBoard.player1.positions = []
         gameBoard.player2.positions = []
+        clearBoard()
         document.getElementById("game-display").setAttribute("style", "display:block")
+        document.getElementById("game-over").classList = "hidden"
+    }
+
+    function clearBoard() {
+        for (let i=1; i<=9; i++) {
+            document.getElementById(`${i}`).textContent = ""
+        }
     }
 
     playAgain = document.getElementById("play-again")
-    playAgain.addEventListener("click", restart())
+    playAgain.addEventListener("click", () => {
+        console.log("play again")
+        restart()
+    })
+
+    // Start game
+    twoPlayerButton = document.getElementById("two-player")
+    twoPlayerButton.addEventListener("click", () => {
+        document.getElementById("start-screen").classList = "hidden"
+        restart();
+    })
 
     return {updateBoard, gameOver}
 }) ()

@@ -5,12 +5,21 @@
   <meta charset="UTF-8"/>
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div id="game-display">
-    <h1>Tic Tac Toe</h1>
+  <div id="start-screen" class="start-screen">
+    <div class="title">Tic-Tac-Toe</div>
+    <div>
+      <button id="cpu" href="something" class="button1 bouncy">CPU</a>
+      <button  id="two-player" href="something" class="button1 bouncy" style="animation-delay:0.07s">2 Player</a>
+    </div>
+  </div>
+  <div id="game-display" style="display:none">
     <div id="whos-turn">Player 1</div>
-    <div id="bord-container">
+    <div id="board-container">
       <div id="board">
         <div id ="1" class="square"></div>
         <div id ="2" class="square"></div>
