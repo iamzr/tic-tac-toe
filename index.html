@@ -5,21 +5,37 @@
   <meta charset="UTF-8"/>
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>Tic Tac Toe</h1>
-  <div id="bord-container">
-    <div id="board">
-      <div id ="1" class="square"></div>
-      <div id ="2" class="square"></div>
-      <div id ="3" class="square"></div>
-      <div id ="4" class="square"></div>
-      <div id ="5" class="square"></div>
-      <div id ="6" class="square"></div>
-      <div id ="7" class="square"></div>
-      <div id ="8" class="square"></div>
-      <div id ="9" class="square"></div>
+  <div id="start-screen" class="start-screen">
+    <div class="title">Tic-Tac-Toe</div>
+    <div>
+      <button id="cpu" href="something" class="button1 bouncy">CPU</a>
+      <button  id="two-player" href="something" class="button1 bouncy" style="animation-delay:0.07s">2 Player</a>
     </div>
+  </div>
+  <div id="game-display" style="display:none">
+    <div id="whos-turn">Player 1</div>
+    <div id="board-container">
+      <div id="board">
+        <div id ="1" class="square"></div>
+        <div id ="2" class="square"></div>
+        <div id ="3" class="square"></div>
+        <div id ="4" class="square"></div>
+        <div id ="5" class="square"></div>
+        <div id ="6" class="square"></div>
+        <div id ="7" class="square"></div>
+        <div id ="8" class="square"></div>
+        <div id ="9" class="square"></div>
+      </div>
+    </div>
+  </div>
+  <div id="game-over" class="hidden">
+    <div id="winner"></div>
+    <button id="play-again">Play again</button>
   </div>
 </body>
 </body>
